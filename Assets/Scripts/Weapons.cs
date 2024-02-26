@@ -14,6 +14,7 @@ public abstract class Weapon
     public int clipSize;
     public float reloadTime;
     public float bulletDamage;
+    public int ammoCount;
 
     // All weapons should have their own Fire() method, so base class is abstract!
     public abstract void Fire(Vector3 position, Vector3 direction);
@@ -30,12 +31,19 @@ public abstract class Weapon
         projectile.GetComponent<SpriteRenderer>().color = color;
         return projectile;
     }
+
+    public void ReloadWeapon()
+    {
+        this.ammoCount = this.clipSize;
+    }
 }
 
 public class Rifle : Weapon
 {
     public Rifle()
     {
+        clipSize = 10;
+        ammoCount = clipSize;
         speed = 10.0f;
         color = Color.red;
     }
@@ -50,6 +58,8 @@ public class Shotgun : Weapon
 {
     public Shotgun()
     {
+        clipSize = 5;
+        ammoCount = clipSize;   
         speed = 5.0f;
         color = Color.green;
     }
@@ -70,6 +80,8 @@ public class Grenade : Weapon
 {
     public Grenade()
     {
+        clipSize = 1;
+        ammoCount = clipSize;
         speed = 7.5f;
         color = Color.blue;
     }

@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         // Shoot every half-second
-        weaponCooldown.total = 0.5f;
+        weaponCooldown.total = 1.0f;
     }
 
     void Update()
@@ -70,6 +70,15 @@ public class Player : MonoBehaviour
         }
 
         transform.position += velocity * moveSpeed * dt;
+
+        if (Input.GetKey(KeyCode.R))
+        {
+            if (weapon.ammoCount != weapon.clipSize)
+            {
+                weapon.ReloadWeapon();
+            }
+            
+        }
     }
 
     void OnTriggerEnter2D(Collider2D collision)
